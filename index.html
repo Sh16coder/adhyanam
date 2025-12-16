@@ -3,212 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Productivity Tracker</title>
+    <title>Study Productivity Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
 <body>
-    <!-- Authentication Page -->
-    <div id="auth-page" class="page active">
+    <!-- Authentication Screen -->
+    <div id="auth-screen" class="screen active">
         <div class="auth-container">
-            <h1><i class="fas fa-graduation-cap"></i> Study Productivity Tracker</h1>
-            
-            <div class="auth-tabs">
-                <button class="tab-btn active" id="login-tab">Login</button>
-                <button class="tab-btn" id="register-tab">Register</button>
+            <div class="auth-header">
+                <h1><i class="fas fa-brain"></i> STUDY<span>FOCUS</span></h1>
+                <p>Productivity Dashboard</p>
             </div>
             
-            <div class="auth-form" id="login-form">
-                <div class="form-group">
-                    <input type="email" id="login-email" placeholder="Email" required>
+            <div class="auth-box">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" id="login-tab">LOGIN</button>
+                    <button class="auth-tab" id="register-tab">REGISTER</button>
                 </div>
-                <div class="form-group">
-                    <input type="password" id="login-password" placeholder="Password" required>
+                
+                <div class="auth-form active" id="login-form">
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="login-email" placeholder="Email">
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="login-password" placeholder="Password">
+                    </div>
+                    <button class="auth-btn" id="login-btn">
+                        <i class="fas fa-sign-in-alt"></i> LOGIN
+                    </button>
+                    
+                    <div class="divider">
+                        <span>OR CONTINUE WITH</span>
+                    </div>
+                    
+                    <button class="google-btn" id="google-login-btn">
+                        <i class="fab fa-google"></i> Google
+                    </button>
                 </div>
-                <button id="login-btn" class="btn-primary">Login</button>
-                <div class="separator">OR</div>
-                <button id="google-login-btn" class="btn-google">
-                    <i class="fab fa-google"></i> Continue with Google
-                </button>
-            </div>
-            
-            <div class="auth-form" id="register-form" style="display: none;">
-                <div class="form-group">
-                    <input type="text" id="register-name" placeholder="Full Name">
+                
+                <div class="auth-form" id="register-form">
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="register-name" placeholder="Full Name">
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="register-email" placeholder="Email">
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="register-password" placeholder="Password (min 6 characters)">
+                    </div>
+                    <button class="auth-btn" id="register-btn">
+                        <i class="fas fa-user-plus"></i> CREATE ACCOUNT
+                    </button>
                 </div>
-                <div class="form-group">
-                    <input type="email" id="register-email" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                    <input type="password" id="register-password" placeholder="Password (min. 6 chars)" required>
-                </div>
-                <button id="register-btn" class="btn-primary">Create Account</button>
             </div>
             
             <div class="auth-footer">
-                <p>Track your study sessions, boost productivity, and achieve your goals</p>
+                <p>Track your productivity • Focus better • Achieve more</p>
             </div>
         </div>
     </div>
 
-    <!-- Setup Page -->
-    <div id="setup-page" class="page">
+    <!-- Setup Screen -->
+    <div id="setup-screen" class="screen">
         <div class="setup-container">
-            <h1><i class="fas fa-cogs"></i> Daily Setup</h1>
-            
-            <div class="setup-section">
-                <h3><i class="fas fa-bullseye"></i> Today's Targets</h3>
-                <div class="targets-container">
-                    <div class="target-input-group">
-                        <input type="text" id="target-input" placeholder="Enter a target (e.g., Complete Math chapter 5)">
-                        <button id="add-target-btn"><i class="fas fa-plus"></i> Add</button>
-                    </div>
-                    <div id="targets-list"></div>
-                </div>
+            <div class="setup-header">
+                <h1><i class="fas fa-cogs"></i> DAILY SETUP</h1>
+                <p>Configure your study session for today</p>
             </div>
             
-            <div class="setup-section">
-                <h3><i class="fas fa-clock"></i> Today's Study Timetable</h3>
-                <div class="timetable-container">
-                    <div class="time-slot" data-time="09:00">
-                        <span>9:00 AM - 10:30 AM</span>
-                        <input type="text" placeholder="Subject/Topic">
+            <div class="setup-content">
+                <div class="setup-section">
+                    <h2><i class="fas fa-bullseye"></i> TODAY'S TARGETS</h2>
+                    <div class="targets-input">
+                        <input type="text" id="target-input" placeholder="Enter study target">
+                        <button id="add-target"><i class="fas fa-plus"></i></button>
                     </div>
-                    <div class="time-slot" data-time="10:30">
-                        <span>10:30 AM - 12:00 PM</span>
-                        <input type="text" placeholder="Subject/Topic">
-                    </div>
-                    <div class="time-slot" data-time="13:00">
-                        <span>1:00 PM - 2:30 PM</span>
-                        <input type="text" placeholder="Subject/Topic">
-                    </div>
-                    <div class="time-slot" data-time="15:00">
-                        <span>3:00 PM - 4:30 PM</span>
-                        <input type="text" placeholder="Subject/Topic">
-                    </div>
-                    <div class="time-slot" data-time="19:00">
-                        <span>7:00 PM - 8:30 PM</span>
-                        <input type="text" placeholder="Subject/Topic">
+                    <div class="targets-list" id="targets-list">
+                        <!-- Targets will appear here -->
                     </div>
                 </div>
-            </div>
-            
-            <div class="setup-section">
-                <h3><i class="fas fa-music"></i> Background Music</h3>
-                <div class="music-container">
-                    <select id="music-select">
-                        <option value="">No Music</option>
-                        <option value="https://cdn.pixabay.com/download/audio/2022/03/10/audio_12d1c7c9c7.mp3?filename=relaxing-study-music-112190.mp3">Relaxing Study Music</option>
-                        <option value="https://cdn.pixabay.com/download/audio/2021/11/02/audio_d167eb65a7.mp3?filename=focus-study-112191.mp3">Focus Study Music</option>
-                        <option value="https://cdn.pixabay.com/download/audio/2022/03/15/audio_19e6d63de5.mp3?filename=piano-moment-9835.mp3">Piano Moment</option>
-                        <option value="https://cdn.pixabay.com/download/audio/2022/01/18/audio_5ef7f3d8d7.mp3?filename=ambient-piano-amp-strings-10711.mp3">Ambient Piano</option>
-                    </select>
+                
+                <div class="setup-section">
+                    <h2><i class="fas fa-clock"></i> STUDY SCHEDULE</h2>
+                    <div class="schedule-grid">
+                        <div class="time-slot">
+                            <span class="time">09:00 - 10:30</span>
+                            <input type="text" placeholder="Subject/Topic">
+                        </div>
+                        <div class="time-slot">
+                            <span class="time">10:30 - 12:00</span>
+                            <input type="text" placeholder="Subject/Topic">
+                        </div>
+                        <div class="time-slot">
+                            <span class="time">13:00 - 14:30</span>
+                            <input type="text" placeholder="Subject/Topic">
+                        </div>
+                        <div class="time-slot">
+                            <span class="time">15:00 - 16:30</span>
+                            <input type="text" placeholder="Subject/Topic">
+                        </div>
+                        <div class="time-slot">
+                            <span class="time">19:00 - 20:30</span>
+                            <input type="text" placeholder="Subject/Topic">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="setup-section">
+                    <h2><i class="fas fa-music"></i> BACKGROUND MUSIC</h2>
                     <div class="music-controls">
-                        <button id="play-music-btn"><i class="fas fa-play"></i> Play</button>
-                        <button id="pause-music-btn"><i class="fas fa-pause"></i> Pause</button>
-                        <div class="volume-control">
-                            <i class="fas fa-volume-up"></i>
-                            <input type="range" id="volume-slider" min="0" max="100" value="50">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <button id="start-study-btn" class="btn-primary btn-large">
-                <i class="fas fa-play-circle"></i> Start Study Session
-            </button>
-        </div>
-    </div>
-
-    <!-- Main Dashboard -->
-    <div id="dashboard-page" class="page">
-        <div class="dashboard-container">
-            <!-- Header -->
-            <div class="dashboard-header">
-                <div class="header-left">
-                    <h1><i class="fas fa-brain"></i> Study Dashboard</h1>
-                    <p id="current-date"></p>
-                </div>
-                <div class="header-right">
-                    <button id="end-day-btn" class="btn-danger">
-                        <i class="fas fa-flag-checkered"></i> End Day
-                    </button>
-                    <button id="logout-btn" class="btn-secondary">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Main Content -->
-            <div class="dashboard-content">
-                <!-- Left Column -->
-                <div class="left-column">
-                    <!-- Timer Section -->
-                    <div class="card timer-card">
-                        <div class="card-header">
-                            <h2><i class="fas fa-stopwatch"></i> TIMER</h2>
-                        </div>
-                        <div class="card-body">
-                            <div class="timer-display" id="timer-display">00:00:00</div>
-                            <div class="timer-controls">
-                                <button id="start-timer-btn" class="btn-primary">
-                                    <i class="fas fa-play"></i> Start
-                                </button>
-                                <button id="pause-timer-btn" class="btn-secondary">
-                                    <i class="fas fa-pause"></i> Pause
-                                </button>
-                                <button id="reset-timer-btn" class="btn-secondary">
-                                    <i class="fas fa-redo"></i> Reset
-                                </button>
-                            </div>
-                            <div class="session-info">
-                                <p>Current Session: <span id="current-session-topic">Not set</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Total Study Hours -->
-                    <div class="card hours-card">
-                        <div class="card-header">
-                            <h2><i class="fas fa-chart-line"></i> TOTAL STUDY HOURS TODAY</h2>
-                        </div>
-                        <div class="card-body">
-                            <div class="hours-display" id="total-hours">00:00</div>
-                            <div class="progress-container">
-                                <div class="progress-bar" id="study-progress-bar"></div>
-                                <span id="progress-text">0% of daily goal</span>
+                        <select id="music-select">
+                            <option value="">No Music</option>
+                            <option value="https://cdn.pixabay.com/download/audio/2022/03/10/audio_12d1c7c9c7.mp3?filename=relaxing-study-music-112190.mp3">Relaxing Study</option>
+                            <option value="https://cdn.pixabay.com/download/audio/2021/11/02/audio_d167eb65a7.mp3?filename=focus-study-112191.mp3">Focus Music</option>
+                            <option value="https://cdn.pixabay.com/download/audio/2022/03/15/audio_19e6d63de5.mp3?filename=piano-moment-9835.mp3">Piano</option>
+                        </select>
+                        <div class="music-buttons">
+                            <button id="play-music"><i class="fas fa-play"></i></button>
+                            <button id="pause-music"><i class="fas fa-pause"></i></button>
+                            <div class="volume">
+                                <i class="fas fa-volume-up"></i>
+                                <input type="range" id="volume" min="0" max="100" value="50">
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Middle Column -->
-                <div class="middle-column">
-                    <!-- Camera Section -->
-                    <div class="card camera-card">
-                        <div class="card-header">
-                            <h2><i class="fas fa-camera"></i> CAMERA</h2>
+                <button class="start-btn" id="start-study">
+                    <i class="fas fa-play-circle"></i> START STUDY SESSION
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard" class="screen">
+        <div class="dashboard-container">
+            <!-- Header -->
+            <div class="dashboard-header">
+                <div class="header-left">
+                    <h1><i class="fas fa-brain"></i> STUDY<span>DASHBOARD</span></h1>
+                    <p id="current-date">Monday, December 16, 2024</p>
+                </div>
+                <div class="header-right">
+                    <button class="header-btn" id="end-day-btn">
+                        <i class="fas fa-flag-checkered"></i> END DAY
+                    </button>
+                    <button class="header-btn logout" id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> LOGOUT
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Main Content - Matching Image Layout -->
+            <div class="main-content">
+                <!-- Left Column -->
+                <div class="left-column">
+                    <!-- Timer Section -->
+                    <div class="card timer-card">
+                        <div class="card-title">TIMER</div>
+                        <div class="timer-display" id="timer-display">00:00:00</div>
+                        <div class="timer-controls">
+                            <button class="timer-btn start" id="start-timer">
+                                <i class="fas fa-play"></i> START
+                            </button>
+                            <button class="timer-btn pause" id="pause-timer">
+                                <i class="fas fa-pause"></i> PAUSE
+                            </button>
+                            <button class="timer-btn reset" id="reset-timer">
+                                <i class="fas fa-redo"></i> RESET
+                            </button>
                         </div>
-                        <div class="card-body">
-                            <div class="camera-container">
-                                <video id="camera-feed" autoplay></video>
-                                <canvas id="camera-canvas" style="display:none;"></canvas>
-                                <div class="camera-controls">
-                                    <button id="toggle-camera-btn" class="btn-secondary">
-                                        <i class="fas fa-video"></i> Enable Camera
-                                    </button>
-                                    <button id="capture-btn" class="btn-secondary" disabled>
-                                        <i class="fas fa-camera"></i> Capture
-                                    </button>
-                                </div>
-                                <div class="capture-history" id="capture-history">
-                                    <!-- Captured images will appear here -->
-                                </div>
+                    </div>
+                    
+                    <!-- Total Study Hours -->
+                    <div class="card hours-card">
+                        <div class="card-title">TOTAL STUDY HOURS TODAY</div>
+                        <div class="hours-display" id="total-hours">00:00</div>
+                        <div class="progress-container">
+                            <div class="progress-bar" id="progress-bar"></div>
+                            <span class="progress-text" id="progress-text">0% of daily goal</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Center Column - Camera -->
+                <div class="center-column">
+                    <div class="card camera-card">
+                        <div class="card-title">CAMERA</div>
+                        <div class="camera-container">
+                            <video id="camera-feed" autoplay></video>
+                            <canvas id="camera-canvas" style="display:none;"></canvas>
+                            <div class="camera-controls">
+                                <button class="cam-btn" id="toggle-camera">
+                                    <i class="fas fa-video"></i> ENABLE CAMERA
+                                </button>
+                                <button class="cam-btn" id="capture-btn" disabled>
+                                    <i class="fas fa-camera"></i> CAPTURE
+                                </button>
+                            </div>
+                            <div class="captures-grid" id="captures-grid">
+                                <!-- Captured images will appear here -->
                             </div>
                         </div>
                     </div>
@@ -218,125 +223,151 @@
                 <div class="right-column">
                     <!-- TODO List -->
                     <div class="card todo-card">
-                        <div class="card-header">
-                            <h2><i class="fas fa-tasks"></i> TODO LIST</h2>
-                        </div>
-                        <div class="card-body">
+                        <div class="card-title">TODO LIST</div>
+                        <div class="todo-container">
                             <div class="todo-input">
-                                <input type="text" id="todo-input" placeholder="Add a new task">
-                                <button id="add-todo-btn"><i class="fas fa-plus"></i></button>
+                                <input type="text" id="todo-input" placeholder="Add new task...">
+                                <button id="add-todo"><i class="fas fa-plus"></i></button>
                             </div>
                             <div class="todo-list" id="todo-list">
-                                <!-- Todo items will be added here -->
+                                <!-- Todo items from setup will appear here -->
                             </div>
                         </div>
                     </div>
                     
                     <!-- Next Session -->
                     <div class="card next-session-card">
-                        <div class="card-header">
-                            <h2><i class="fas fa-calendar-alt"></i> NEXT SESSION</h2>
-                        </div>
-                        <div class="card-body">
-                            <div class="next-session-info">
-                                <div class="session-time" id="next-session-time">--:-- --</div>
-                                <div class="session-topic" id="next-session-topic">No upcoming sessions</div>
-                                <div class="session-countdown" id="next-session-countdown">--:--:--</div>
-                            </div>
+                        <div class="card-title">NEXT SESSION</div>
+                        <div class="next-session-info">
+                            <div class="next-time" id="next-session-time">14:00 PM</div>
+                            <div class="next-topic" id="next-session-topic">Mathematics Chapter 5</div>
+                            <div class="countdown" id="next-session-countdown">01:23:45</div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Recent Activity -->
-            <div class="recent-activity">
-                <h3><i class="fas fa-history"></i> Today's Activity</h3>
+            <!-- Activity Feed -->
+            <div class="activity-feed">
+                <h3><i class="fas fa-history"></i> TODAY'S ACTIVITY</h3>
                 <div class="activity-list" id="activity-list">
-                    <!-- Activity items will be added here -->
+                    <!-- Activity items will appear here -->
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Results Page -->
-    <div id="results-page" class="page">
+    <!-- Results Screen -->
+    <div id="results-screen" class="screen">
         <div class="results-container">
-            <h1><i class="fas fa-chart-pie"></i> Daily Report</h1>
+            <div class="results-header">
+                <h1><i class="fas fa-chart-pie"></i> DAILY REPORT</h1>
+                <p id="report-date">December 16, 2024</p>
+            </div>
             
             <div class="report-card" id="report-card">
                 <div class="report-header">
-                    <h2>STUDY REPORT - <span id="report-date"></span></h2>
-                    <p id="report-user"></p>
+                    <h2>STUDY PERFORMANCE REPORT</h2>
+                    <p id="report-user-name">John Doe</p>
                 </div>
                 
-                <div class="report-content">
-                    <div class="report-stat">
-                        <h3><i class="fas fa-check-circle"></i> Targets Completed</h3>
-                        <div class="stat-value" id="targets-completed">0/0</div>
-                        <div class="stat-progress">
-                            <div class="progress-bar" id="targets-progress-bar"></div>
+                <div class="report-grid">
+                    <div class="report-item">
+                        <div class="report-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="report-content">
+                            <h3>TARGETS COMPLETED</h3>
+                            <div class="report-value" id="targets-completed">4/6</div>
+                            <div class="report-progress">
+                                <div class="bar" id="targets-bar" style="width: 67%"></div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="report-stat">
-                        <h3><i class="fas fa-clock"></i> Total Study Hours</h3>
-                        <div class="stat-value" id="total-study-hours">00:00</div>
-                        <p>Daily Goal: <span id="daily-goal">8 hours</span></p>
-                    </div>
-                    
-                    <div class="report-stat">
-                        <h3><i class="fas fa-chair"></i> Max Sitting Hours</h3>
-                        <div class="stat-value" id="max-sitting-hours">00:00</div>
-                        <p>Longest continuous study session</p>
-                    </div>
-                    
-                    <div class="report-stat">
-                        <h3><i class="fas fa-tasks"></i> Tasks Completed</h3>
-                        <div class="stat-value" id="tasks-completed">0/0</div>
-                        <div class="stat-progress">
-                            <div class="progress-bar" id="tasks-progress-bar"></div>
+                    <div class="report-item">
+                        <div class="report-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="report-content">
+                            <h3>TOTAL STUDY HOURS</h3>
+                            <div class="report-value" id="total-study-hours">05:42</div>
+                            <p>Daily Goal: 8 hours</p>
                         </div>
                     </div>
                     
-                    <div class="report-stat">
-                        <h3><i class="fas fa-fire"></i> Productivity Score</h3>
-                        <div class="stat-value" id="productivity-score">0%</div>
-                        <p>Based on targets and time management</p>
+                    <div class="report-item">
+                        <div class="report-icon">
+                            <i class="fas fa-chair"></i>
+                        </div>
+                        <div class="report-content">
+                            <h3>MAX SITTING HOURS</h3>
+                            <div class="report-value" id="max-sitting-hours">02:15</div>
+                            <p>Longest continuous session</p>
+                        </div>
                     </div>
                     
-                    <div class="report-stat">
-                        <h3><i class="fas fa-calendar-day"></i> Sessions Completed</h3>
-                        <div class="stat-value" id="sessions-completed">0</div>
-                        <p>Total study sessions today</p>
+                    <div class="report-item">
+                        <div class="report-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="report-content">
+                            <h3>TASKS COMPLETED</h3>
+                            <div class="report-value" id="tasks-completed">8/10</div>
+                            <div class="report-progress">
+                                <div class="bar" id="tasks-bar" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="report-item">
+                        <div class="report-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="report-content">
+                            <h3>PRODUCTIVITY SCORE</h3>
+                            <div class="report-value" id="productivity-score">78%</div>
+                            <p>Overall efficiency</p>
+                        </div>
+                    </div>
+                    
+                    <div class="report-item">
+                        <div class="report-icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <div class="report-content">
+                            <h3>SESSIONS COMPLETED</h3>
+                            <div class="report-value" id="sessions-completed">4</div>
+                            <p>Study sessions today</p>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="report-summary">
-                    <h3><i class="fas fa-star"></i> Summary</h3>
-                    <p id="report-summary-text">Great work today! You're making progress toward your goals.</p>
+                    <h3><i class="fas fa-star"></i> SUMMARY</h3>
+                    <p id="summary-text">Good work today! You maintained focus during your study sessions and completed most of your targets.</p>
                 </div>
             </div>
             
             <div class="results-actions">
-                <button id="save-report-btn" class="btn-primary">
-                    <i class="fas fa-download"></i> Save as Image
+                <button class="action-btn primary" id="save-report">
+                    <i class="fas fa-download"></i> SAVE AS IMAGE
                 </button>
-                <button id="new-day-btn" class="btn-success">
-                    <i class="fas fa-sun"></i> Start New Day
+                <button class="action-btn success" id="new-day-btn">
+                    <i class="fas fa-sun"></i> START NEW DAY
                 </button>
-                <button id="back-to-dashboard-btn" class="btn-secondary">
-                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                <button class="action-btn secondary" id="back-dashboard">
+                    <i class="fas fa-arrow-left"></i> BACK TO DASHBOARD
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Audio Player (Hidden) -->
+    <!-- Background Music -->
     <audio id="background-music" loop></audio>
 
     <!-- Scripts -->
     <script src="firebase-config.js"></script>
-    <script src="auth.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
