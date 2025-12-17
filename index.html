@@ -22,20 +22,20 @@
             
             <div class="auth-box">
                 <div class="auth-tabs">
-                    <button class="auth-tab active" id="login-tab">LOGIN</button>
-                    <button class="auth-tab" id="register-tab">REGISTER</button>
+                    <button class="auth-tab active" id="loginTabBtn">LOGIN</button>
+                    <button class="auth-tab" id="registerTabBtn">REGISTER</button>
                 </div>
                 
-                <div class="auth-form active" id="login-form">
+                <div class="auth-form active" id="loginForm">
                     <div class="input-group">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" id="login-email" placeholder="Email">
+                        <input type="email" id="loginEmail" placeholder="Email">
                     </div>
                     <div class="input-group">
                         <i class="fas fa-lock"></i>
-                        <input type="password" id="login-password" placeholder="Password">
+                        <input type="password" id="loginPassword" placeholder="Password">
                     </div>
-                    <button class="auth-btn" id="login-btn">
+                    <button class="auth-btn" id="loginBtn">
                         <i class="fas fa-sign-in-alt"></i> LOGIN
                     </button>
                     
@@ -43,25 +43,25 @@
                         <span>OR CONTINUE WITH</span>
                     </div>
                     
-                    <button class="google-btn" id="google-login-btn">
+                    <button class="google-btn" id="googleLoginBtn">
                         <i class="fab fa-google"></i> Google
                     </button>
                 </div>
                 
-                <div class="auth-form" id="register-form">
+                <div class="auth-form" id="registerForm">
                     <div class="input-group">
                         <i class="fas fa-user"></i>
-                        <input type="text" id="register-name" placeholder="Full Name">
+                        <input type="text" id="registerName" placeholder="Full Name">
                     </div>
                     <div class="input-group">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" id="register-email" placeholder="Email">
+                        <input type="email" id="registerEmail" placeholder="Email">
                     </div>
                     <div class="input-group">
                         <i class="fas fa-lock"></i>
-                        <input type="password" id="register-password" placeholder="Password (min 6 characters)">
+                        <input type="password" id="registerPassword" placeholder="Password (min 6 characters)">
                     </div>
-                    <button class="auth-btn" id="register-btn">
+                    <button class="auth-btn" id="registerBtn">
                         <i class="fas fa-user-plus"></i> CREATE ACCOUNT
                     </button>
                 </div>
@@ -85,10 +85,10 @@
                 <div class="setup-section">
                     <h2><i class="fas fa-bullseye"></i> TODAY'S TARGETS</h2>
                     <div class="targets-input">
-                        <input type="text" id="target-input" placeholder="Enter study target">
-                        <button id="add-target"><i class="fas fa-plus"></i></button>
+                        <input type="text" id="targetInput" placeholder="Enter study target">
+                        <button id="addTargetBtn"><i class="fas fa-plus"></i></button>
                     </div>
-                    <div class="targets-list" id="targets-list">
+                    <div class="targets-list" id="targetsList">
                         <!-- Targets will appear here -->
                     </div>
                 </div>
@@ -122,24 +122,22 @@
                 <div class="setup-section">
                     <h2><i class="fas fa-music"></i> BACKGROUND MUSIC</h2>
                     <div class="music-controls">
-                        <select id="music-select">
+                        <select id="musicSelect">
                             <option value="">No Music</option>
                             <option value="https://cdn.pixabay.com/download/audio/2022/03/10/audio_12d1c7c9c7.mp3?filename=relaxing-study-music-112190.mp3">Relaxing Study</option>
-                            <option value="https://cdn.pixabay.com/download/audio/2021/11/02/audio_d167eb65a7.mp3?filename=focus-study-112191.mp3">Focus Music</option>
-                            <option value="https://cdn.pixabay.com/download/audio/2022/03/15/audio_19e6d63de5.mp3?filename=piano-moment-9835.mp3">Piano</option>
                         </select>
                         <div class="music-buttons">
-                            <button id="play-music"><i class="fas fa-play"></i></button>
-                            <button id="pause-music"><i class="fas fa-pause"></i></button>
+                            <button id="playMusicBtn"><i class="fas fa-play"></i></button>
+                            <button id="pauseMusicBtn"><i class="fas fa-pause"></i></button>
                             <div class="volume">
                                 <i class="fas fa-volume-up"></i>
-                                <input type="range" id="volume" min="0" max="100" value="50">
+                                <input type="range" id="volumeSlider" min="0" max="100" value="50">
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <button class="start-btn" id="start-study">
+                <button class="start-btn" id="startStudyBtn">
                     <i class="fas fa-play-circle"></i> START STUDY SESSION
                 </button>
             </div>
@@ -147,40 +145,40 @@
     </div>
 
     <!-- Main Dashboard -->
-    <div id="dashboard" class="screen">
+    <div id="dashboard-screen" class="screen">
         <div class="dashboard-container">
             <!-- Header -->
             <div class="dashboard-header">
                 <div class="header-left">
                     <h1><i class="fas fa-brain"></i> STUDY<span>DASHBOARD</span></h1>
-                    <p id="current-date">Monday, December 16, 2024</p>
+                    <p id="currentDate">Monday, December 16, 2024</p>
                 </div>
                 <div class="header-right">
-                    <button class="header-btn" id="end-day-btn">
+                    <button class="header-btn" id="endDayBtn">
                         <i class="fas fa-flag-checkered"></i> END DAY
                     </button>
-                    <button class="header-btn logout" id="logout-btn">
+                    <button class="header-btn logout" id="logoutBtn">
                         <i class="fas fa-sign-out-alt"></i> LOGOUT
                     </button>
                 </div>
             </div>
             
-            <!-- Main Content - Matching Image Layout -->
+            <!-- Main Content -->
             <div class="main-content">
                 <!-- Left Column -->
                 <div class="left-column">
                     <!-- Timer Section -->
                     <div class="card timer-card">
                         <div class="card-title">TIMER</div>
-                        <div class="timer-display" id="timer-display">00:00:00</div>
+                        <div class="timer-display" id="timerDisplay">00:00:00</div>
                         <div class="timer-controls">
-                            <button class="timer-btn start" id="start-timer">
+                            <button class="timer-btn start" id="startTimerBtn">
                                 <i class="fas fa-play"></i> START
                             </button>
-                            <button class="timer-btn pause" id="pause-timer">
+                            <button class="timer-btn pause" id="pauseTimerBtn">
                                 <i class="fas fa-pause"></i> PAUSE
                             </button>
-                            <button class="timer-btn reset" id="reset-timer">
+                            <button class="timer-btn reset" id="resetTimerBtn">
                                 <i class="fas fa-redo"></i> RESET
                             </button>
                         </div>
@@ -189,10 +187,10 @@
                     <!-- Total Study Hours -->
                     <div class="card hours-card">
                         <div class="card-title">TOTAL STUDY HOURS TODAY</div>
-                        <div class="hours-display" id="total-hours">00:00</div>
+                        <div class="hours-display" id="totalHours">00:00</div>
                         <div class="progress-container">
-                            <div class="progress-bar" id="progress-bar"></div>
-                            <span class="progress-text" id="progress-text">0% of daily goal</span>
+                            <div class="progress-bar" id="progressBar"></div>
+                            <span class="progress-text" id="progressText">0% of daily goal</span>
                         </div>
                     </div>
                 </div>
@@ -202,17 +200,17 @@
                     <div class="card camera-card">
                         <div class="card-title">CAMERA</div>
                         <div class="camera-container">
-                            <video id="camera-feed" autoplay></video>
-                            <canvas id="camera-canvas" style="display:none;"></canvas>
+                            <video id="cameraFeed" autoplay></video>
+                            <canvas id="cameraCanvas" style="display:none;"></canvas>
                             <div class="camera-controls">
-                                <button class="cam-btn" id="toggle-camera">
+                                <button class="cam-btn" id="toggleCameraBtn">
                                     <i class="fas fa-video"></i> ENABLE CAMERA
                                 </button>
-                                <button class="cam-btn" id="capture-btn" disabled>
+                                <button class="cam-btn" id="captureBtn" disabled>
                                     <i class="fas fa-camera"></i> CAPTURE
                                 </button>
                             </div>
-                            <div class="captures-grid" id="captures-grid">
+                            <div class="captures-grid" id="capturesGrid">
                                 <!-- Captured images will appear here -->
                             </div>
                         </div>
@@ -226,11 +224,11 @@
                         <div class="card-title">TODO LIST</div>
                         <div class="todo-container">
                             <div class="todo-input">
-                                <input type="text" id="todo-input" placeholder="Add new task...">
-                                <button id="add-todo"><i class="fas fa-plus"></i></button>
+                                <input type="text" id="todoInput" placeholder="Add new task...">
+                                <button id="addTodoBtn"><i class="fas fa-plus"></i></button>
                             </div>
-                            <div class="todo-list" id="todo-list">
-                                <!-- Todo items from setup will appear here -->
+                            <div class="todo-list" id="todoList">
+                                <!-- Todo items will appear here -->
                             </div>
                         </div>
                     </div>
@@ -239,9 +237,9 @@
                     <div class="card next-session-card">
                         <div class="card-title">NEXT SESSION</div>
                         <div class="next-session-info">
-                            <div class="next-time" id="next-session-time">14:00 PM</div>
-                            <div class="next-topic" id="next-session-topic">Mathematics Chapter 5</div>
-                            <div class="countdown" id="next-session-countdown">01:23:45</div>
+                            <div class="next-time" id="nextSessionTime">14:00 PM</div>
+                            <div class="next-topic" id="nextSessionTopic">Mathematics Chapter 5</div>
+                            <div class="countdown" id="nextSessionCountdown">01:23:45</div>
                         </div>
                     </div>
                 </div>
@@ -250,7 +248,7 @@
             <!-- Activity Feed -->
             <div class="activity-feed">
                 <h3><i class="fas fa-history"></i> TODAY'S ACTIVITY</h3>
-                <div class="activity-list" id="activity-list">
+                <div class="activity-list" id="activityList">
                     <!-- Activity items will appear here -->
                 </div>
             </div>
@@ -262,13 +260,13 @@
         <div class="results-container">
             <div class="results-header">
                 <h1><i class="fas fa-chart-pie"></i> DAILY REPORT</h1>
-                <p id="report-date">December 16, 2024</p>
+                <p id="reportDate">December 16, 2024</p>
             </div>
             
-            <div class="report-card" id="report-card">
+            <div class="report-card" id="reportCard">
                 <div class="report-header">
                     <h2>STUDY PERFORMANCE REPORT</h2>
-                    <p id="report-user-name">John Doe</p>
+                    <p id="reportUserName">John Doe</p>
                 </div>
                 
                 <div class="report-grid">
@@ -278,9 +276,9 @@
                         </div>
                         <div class="report-content">
                             <h3>TARGETS COMPLETED</h3>
-                            <div class="report-value" id="targets-completed">4/6</div>
+                            <div class="report-value" id="targetsCompleted">4/6</div>
                             <div class="report-progress">
-                                <div class="bar" id="targets-bar" style="width: 67%"></div>
+                                <div class="bar" id="targetsBar" style="width: 67%"></div>
                             </div>
                         </div>
                     </div>
@@ -291,7 +289,7 @@
                         </div>
                         <div class="report-content">
                             <h3>TOTAL STUDY HOURS</h3>
-                            <div class="report-value" id="total-study-hours">05:42</div>
+                            <div class="report-value" id="totalStudyHours">05:42</div>
                             <p>Daily Goal: 8 hours</p>
                         </div>
                     </div>
@@ -302,7 +300,7 @@
                         </div>
                         <div class="report-content">
                             <h3>MAX SITTING HOURS</h3>
-                            <div class="report-value" id="max-sitting-hours">02:15</div>
+                            <div class="report-value" id="maxSittingHours">02:15</div>
                             <p>Longest continuous session</p>
                         </div>
                     </div>
@@ -313,9 +311,9 @@
                         </div>
                         <div class="report-content">
                             <h3>TASKS COMPLETED</h3>
-                            <div class="report-value" id="tasks-completed">8/10</div>
+                            <div class="report-value" id="tasksCompleted">8/10</div>
                             <div class="report-progress">
-                                <div class="bar" id="tasks-bar" style="width: 80%"></div>
+                                <div class="bar" id="tasksBar" style="width: 80%"></div>
                             </div>
                         </div>
                     </div>
@@ -326,7 +324,7 @@
                         </div>
                         <div class="report-content">
                             <h3>PRODUCTIVITY SCORE</h3>
-                            <div class="report-value" id="productivity-score">78%</div>
+                            <div class="report-value" id="productivityScore">78%</div>
                             <p>Overall efficiency</p>
                         </div>
                     </div>
@@ -337,7 +335,7 @@
                         </div>
                         <div class="report-content">
                             <h3>SESSIONS COMPLETED</h3>
-                            <div class="report-value" id="sessions-completed">4</div>
+                            <div class="report-value" id="sessionsCompleted">4</div>
                             <p>Study sessions today</p>
                         </div>
                     </div>
@@ -345,18 +343,18 @@
                 
                 <div class="report-summary">
                     <h3><i class="fas fa-star"></i> SUMMARY</h3>
-                    <p id="summary-text">Good work today! You maintained focus during your study sessions and completed most of your targets.</p>
+                    <p id="summaryText">Good work today! You maintained focus during your study sessions and completed most of your targets.</p>
                 </div>
             </div>
             
             <div class="results-actions">
-                <button class="action-btn primary" id="save-report">
+                <button class="action-btn primary" id="saveReportBtn">
                     <i class="fas fa-download"></i> SAVE AS IMAGE
                 </button>
-                <button class="action-btn success" id="new-day-btn">
+                <button class="action-btn success" id="newDayBtn">
                     <i class="fas fa-sun"></i> START NEW DAY
                 </button>
-                <button class="action-btn secondary" id="back-dashboard">
+                <button class="action-btn secondary" id="backDashboardBtn">
                     <i class="fas fa-arrow-left"></i> BACK TO DASHBOARD
                 </button>
             </div>
@@ -364,11 +362,10 @@
     </div>
 
     <!-- Background Music -->
-    <audio id="background-music" loop></audio>
+    <audio id="backgroundMusic" loop></audio>
 
     <!-- Scripts -->
     <script src="firebase-config.js"></script>
     <script src="script.js"></script>
-    <script src="auth.js"></script>
 </body>
-</html>
+    </html>
